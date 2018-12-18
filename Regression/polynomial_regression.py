@@ -31,22 +31,31 @@ y_train = sc_y.fit_transform(y_train)
 
 # Train Model
 from sklearn.linear_model import LinearRegression
-regr = LinearRegression()
-# np.reshape(-1, 1) to provide the correct input format
-regr.fit(x_train.reshape(-1, 1), y_train.reshape(-1, 1)) # training the model - simple as that huh
-y_pred = regr.predict(x_test.reshape(-1,1))
-y_pred = y_pred[:,0]
+from sklearn.preprocessing import PolynomialFeatures
+# Creates separate variables for each degree of the feature 
+poly_reg = PolynomialFeatures(degree = 4)
+x_poly   = poly_reg.fit_transform(x_train.reshape(-1, 1))
+poly_reg.fit(x_poly, y_train)
+x_poly_test   = poly_reg.fit_transform(x_test.reshape(-1, 1))
+lin_reg  = LinearRegression()
+lin_reg.fit(x_poly_test, y_test)
+y_pred   = lin_reg.predict(x_poly_test)
 
 # Measure Accuracy
 from sklearn.metrics import mean_squared_error
 acc = mean_squared_error(y_test, y_pred)
 
 # Visualise Results
-plt.title("Linear Regression Prediction")
+plt.title("Polynomial Regression Prediction")
 plt.xlabel("Scaled BMI")
 plt.ylabel("Result")
-plt.plot(x_test, y_pred, color = 'b')
 plt.scatter(x_test, y_test, color = 'r') 
+# Need to plot it in steps
+x_grid = np.arange(min(x), max(x), (max(x)-min(x))/1000.0)
+x_grid = x_grid.reshape((len(x_grid), 1))
+plt.plot(x_grid, lin_reg.predict(poly_reg.fit_transform(x_grid)),
+         color = 'b')
+
 
 # Ideas for improvement
 """
