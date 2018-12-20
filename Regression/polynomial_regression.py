@@ -32,13 +32,17 @@ y_train = sc_y.fit_transform(y_train)
 # Train Model
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
-# Creates separate variables for each degree of the feature 
-poly_reg = PolynomialFeatures(degree = 4)
+# Creates separate variables for each polynomial degree of the feature 
+poly_reg = PolynomialFeatures(degree = 3)
 x_poly   = poly_reg.fit_transform(x_train.reshape(-1, 1))
-poly_reg.fit(x_poly, y_train)
 x_poly_test   = poly_reg.fit_transform(x_test.reshape(-1, 1))
+poly_reg.fit(x_poly, y_train)
+# Fit the polynomial features to the LinearRegression
 lin_reg  = LinearRegression()
 lin_reg.fit(x_poly_test, y_test)
+
+
+# Predict the result
 y_pred   = lin_reg.predict(x_poly_test)
 
 # Measure Accuracy
@@ -50,15 +54,19 @@ plt.title("Polynomial Regression Prediction")
 plt.xlabel("Scaled BMI")
 plt.ylabel("Result")
 plt.scatter(x_test, y_test, color = 'r') 
-# Need to plot it in steps
-x_grid = np.arange(min(x), max(x), (max(x)-min(x))/1000.0)
+"""
+Plotting the final curve is a bit more complicated
+- Use small steps in x and compute the result for each step
+- Connect each computed point with a line so it looks like a smooth curve
+"""
+x_grid = np.arange(min(x), max(x), (max(x)-min(x))/1000.0) # Define small steps of x
 x_grid = x_grid.reshape((len(x_grid), 1))
 plt.plot(x_grid, lin_reg.predict(poly_reg.fit_transform(x_grid)),
          color = 'b')
 
-
 # Ideas for improvement
 """
+- Change the degree of polynomial and see how the curve changes (it should overfit if degree is too large)
 - Use different accuracy metrics: https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics
 - Use different feature from the dataset, e.g. x = dataset["data"][:, 1] or several different features at the same time
 - If you use 2 feature you can visualise it with 3D plot: https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html
