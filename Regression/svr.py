@@ -22,8 +22,8 @@ x_train = sc_x.fit_transform(x_train) # Scaling the data
 x_test  = sc_x.transform(x_test)
 
 # Train Model
-from sklearn.ensemble import RandomForestRegressor
-regr = RandomForestRegressor(n_estimators = 10, random_state = 42)
+from sklearn.svm import SVR
+regr = SVR()
 regr.fit(x_train, y_train)
 
 # Predict Results
