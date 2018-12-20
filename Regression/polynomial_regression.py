@@ -18,7 +18,7 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, rando
 
 # Data Preprocessing
 """
-None in this case, dataset has been already centered and scaled.
+None in this case, dataset has been already centered and scaled for us
 Usually the code for the scaling should be as follows:
 
 from sklearn.preprocessing import StandardScaler
@@ -56,13 +56,13 @@ plt.ylabel("Result")
 plt.scatter(x_test, y_test, color = 'r') 
 """
 Plotting the final curve is a bit more complicated
-- Use small steps in x and compute the result for each step
+- Use small steps in x and compute the y value for each step
 - Connect each computed point with a line so it looks like a smooth curve
 """
 x_grid = np.arange(min(x), max(x), (max(x)-min(x))/1000.0) # Define small steps of x
 x_grid = x_grid.reshape((len(x_grid), 1))
 plt.plot(x_grid, lin_reg.predict(poly_reg.fit_transform(x_grid)),
-         color = 'b')
+         color = 'b') # connect computed points
 
 # Ideas for improvement
 """

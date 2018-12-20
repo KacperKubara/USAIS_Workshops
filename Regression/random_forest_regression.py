@@ -7,7 +7,7 @@ from sklearn.datasets import load_boston
 dataset = load_boston()
 
 # Choose which features to use
-x = dataset["data"][:, [9,10]] # using TAX and PRATIO features
+x = dataset["data"][:, [7, 9]] # using DIS and TAX features
 y = dataset["target"]     # output value
 
 # Split data into train and test dataset
@@ -17,7 +17,6 @@ x_train, x_test, y_train, y_test = train_test_split(x[:,:], y, test_size = 0.2, 
 # Data Preprocessing
 from sklearn.preprocessing import StandardScaler
 sc_x    = StandardScaler()
-sc_y    = StandardScaler()
 x_train = sc_x.fit_transform(x_train) # Scaling the data
 x_test  = sc_x.transform(x_test)
 
@@ -37,6 +36,9 @@ acc = mean_squared_error(y_test, y_pred)
 from mpl_toolkits.mplot3d import axes3d
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-
+ax.set_xlabel('DIS values')
+ax.set_ylabel('TAX values')
+ax.set_zlabel('House Price(1k$)')
+x_test = sc_x.inverse_transform(x_test)
 ax.scatter(x_test[:,0], x_test[:,1], y_test, color = 'r')
 ax.scatter(x_test[:,0], x_test[:,1], y_pred, color = 'b')
