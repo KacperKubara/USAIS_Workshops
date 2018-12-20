@@ -34,6 +34,8 @@ from sklearn.linear_model import LinearRegression
 regr = LinearRegression()
 # np.reshape(-1, 1) to provide the correct input format
 regr.fit(x_train.reshape(-1, 1), y_train.reshape(-1, 1)) # training the model - simple as that huh
+
+# Predict Results
 y_pred = regr.predict(x_test.reshape(-1,1))
 y_pred = y_pred[:,0]
 
