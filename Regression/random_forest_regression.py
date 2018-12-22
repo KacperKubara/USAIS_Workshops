@@ -32,7 +32,7 @@ y_pred = regr.predict(x_test)
 from sklearn.metrics import mean_squared_error
 acc = mean_squared_error(y_test, y_pred)
 
-# Visualisation
+# Visualise Results
 from mpl_toolkits.mplot3d import axes3d
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
