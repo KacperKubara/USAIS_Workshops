@@ -49,7 +49,7 @@ plt.xlabel("Scaled BMI")
 plt.ylabel("Result")
 plt.plot(x_test, y_pred, color = 'b')
 plt.scatter(x_test, y_test, color = 'r') 
-
+plt.show()
 # Ideas for improvement
 """
 - Use different accuracy metrics: https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics
