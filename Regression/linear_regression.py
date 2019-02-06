@@ -3,8 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Read Data
-from sklearn.datasets import load_diabetes 
-dataset = load_diabetes() 
+from sklearn.datasets import load_diabetes # Loading sample dataset from sklearn library
+dataset = load_diabetes() # You can explore the dataset features in the Variable explorer tab
 
 # Choose which features to use
 x = dataset["data"][:, 2] # using BMI feature
@@ -41,7 +41,7 @@ y_pred = y_pred[:,0]
 
 # Measure Accuracy
 from sklearn.metrics import mean_squared_error
-acc = mean_squared_error(y_test, y_pred) # Mean Squared Error to measure accuracy
+acc = mean_squared_error(y_test, y_pred) # Mean Squared Error to measure the accuracy
 
 # Visualise Results
 plt.title("Linear Regression Prediction")
@@ -50,6 +50,7 @@ plt.ylabel("Result")
 plt.plot(x_test, y_pred, color = 'b')
 plt.scatter(x_test, y_test, color = 'r') 
 plt.show()
+
 # Ideas for improvement
 """
 - Use different accuracy metrics: https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics
@@ -57,3 +58,4 @@ plt.show()
 - If you use 2 features you can visualise it with 3D plot: https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html
 - Change parameters to reduce the error
 """
+    
