@@ -33,11 +33,11 @@ regr.fit(x_train, y_train) # training the model - simple as that huh
 y_pred = regr.predict(x_test)
 y_pred = sc_y.inverse_transform(y_pred) #Unscaling the result
 
-"""
+
 # Measure Accuracy
 from sklearn.metrics import mean_squared_error
 acc = mean_squared_error(y_test, y_pred) # Mean Squared Error to measure the accuracy
-"""
+
 
 # Prepare the dataframe for the submission
 d = {'price': y_pred[:,0], 'id': x_test_copy.id.values}
