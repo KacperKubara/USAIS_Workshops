@@ -53,12 +53,13 @@ y = pd.DataFrame({'class': array})
 """
 Instead of Sklearn OneHotEncoder class I decided to use pd.get_dummies
 The reason why is that it can also remove one of the dummy variables for each feature
-to avoid dummy variable trap.
-An overview of the dummy variable trap can be found here:
-    
+to avoid the dummy variable trap.
+An explanation of the dummy variable trap can be found here:
+    https://www.algosome.com/articles/dummy-variable-trap-regression.html
 """
-x_train = pd.get_dummies(x_train,columns = x_train.columns, drop_first=True)
-x_test  = pd.get_dummies(x_test,columns = x_test.columns, drop_first=True)
+x_train = pd.get_dummies(x_train,columns = x_train.columns, drop_first = True)
+x_test  = pd.get_dummies(x_test,columns = x_test.columns, drop_first = True)
+x_test = x_test.drop(columns = ['cap-shape_5']) # Because of the small dataset, the feature doesn't exist in x_train so we remove it from x_test as well
 y = pd.get_dummies(y,columns = y.columns, drop_first=True)
 ############################################################################################## 
 
@@ -69,6 +70,9 @@ svm.fit(x_train, y)
 
 # Predict Results
 y_pred = svm.predict(x_test)
+
+# Format data for submission
+# Change '0' and '1' to correct submission format 'e' and 'p'
 y_pred_str = []
 for number in y_pred:
     if number == 0:
