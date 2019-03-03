@@ -55,7 +55,7 @@ Instead of Sklearn OneHotEncoder class I decided to use pd.get_dummies
 The reason why is that it can also remove one of the dummy variables for each feature
 to avoid dummy variable trap.
 An overview of the dummy variable trap can be found here:
-    https://www.quora.com/When-do-I-fall-in-the-dummy-variable-trap
+    
 """
 x_train = pd.get_dummies(x_train,columns = x_train.columns, drop_first=True)
 x_test  = pd.get_dummies(x_test,columns = x_test.columns, drop_first=True)
@@ -69,7 +69,13 @@ svm.fit(x_train, y)
 
 # Predict Results
 y_pred = svm.predict(x_test)
-
+y_pred_str = []
+for number in y_pred:
+    if number == 0:
+        y_pred_str.append('e')
+    if number == 1:
+        y_pred_str.append('p')
+        
 # Save the results in .csv file in the correct format
-submission = pd.DataFrame({'id': x_test_copy['id'], 'class': y_pred})
-submission.to_csv('submission.csv')
+submission = pd.DataFrame({'id': x_test_copy['id'], 'class': y_pred_str})
+submission.to_csv('submission.csv', index = False)
