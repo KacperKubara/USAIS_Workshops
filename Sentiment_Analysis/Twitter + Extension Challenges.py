@@ -38,7 +38,6 @@ for j in range(1):
         Hint: in pattern.en the "en" stands for english
         Hint: Have a look at the google translate library
     
-    --------------------------------------------------------
-        
+    --------------------------------------------------------  
 ''' 
 

@@ -20,7 +20,7 @@ response = requests.get(url)
 soup = BeautifulSoup(response.text, 'html.parser')
 
 
-'''Scan through the whole text and find anything with the <script> <\script> brackets'''
+'''Scan through the whole text and find anything within the <script> <\script> brackets'''
 
 scripts = soup.find_all("script")
 
