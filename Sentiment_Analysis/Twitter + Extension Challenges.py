@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 """
 Pattern.web can be used to extract information from Wikipedia, Facebook, Twitter, etc
 Find out more: https://www.clips.uantwerpen.be/pages/pattern-web
@@ -30,13 +29,16 @@ for j in range(1):
         print("Sentiment is: ", feeling, "[", sentiment(tweet.text)[0], "]")
         
 
-'''EXTENTIONS'''
+''' ---------------------- EXTENSIONS ----------------------
 
-''' 1) Can you make this work for a Facebook post?
+    1) Can you make this work for a Facebook post?
     
     2) Can you make it work for all languages?
-    Hint: in pattern.en the "en" stands for english
-    Hint: Have a look at the google translate library
     
-'''
+        Hint: in pattern.en the "en" stands for english
+        Hint: Have a look at the google translate library
+    
+    --------------------------------------------------------
+        
+''' 
 
